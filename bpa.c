@@ -23,6 +23,7 @@ struct bpa_heap {
 	pointer_t slot[MAX_SLOT];
 };
 
+// the size of slice is at the end of slice, because sizeof(struct slice) align to 8 would be better.
 struct slice {
 	int ref;
 	pointer_t sz;
