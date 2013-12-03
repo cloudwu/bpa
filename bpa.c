@@ -146,10 +146,12 @@ collect(struct bpa_heap *H) {
 		}
 		if (length > COLLECT_STEP_LENGTH) {
 			H->collect = dst;
-			struct slice *s = HEAP_SLICE(H, dst);
-			s->ref = 0;
-			s->sz = p - dst;
-			*SLICE_ID(s) = 0;
+			if (p != dst) {
+				struct slice *s = HEAP_SLICE(H, dst);
+				s->ref = 0;
+				s->sz = p - dst;
+				*SLICE_ID(s) = 0;
+			}
 			break;
 		}
 		struct slice *s = HEAP_SLICE(H, p);
